@@ -13,6 +13,9 @@ describe('Test input', () => {
     expect(encode64(123)).toBe('1X.000000000000');
   });
   it('Should calculate correctly', () => {
+    expect(encode64(-123)).toBe('-1X.000000000000');
+  });
+  it('Should calculate correctly', () => {
     expect(encode64(0.456)).toBe('0.tbNGvLDr8G3B');
   });
   it('Should calculate correctly', () => {
@@ -20,5 +23,8 @@ describe('Test input', () => {
   });
   it('Should calculate correctly', () => {
     expect(encode64(0.1)).toBe('0.6pCpCpCpCpCp');
+  });
+  it('Should calculate correctly', () => {
+    expect(encode64(-0.1)).toBe('-0.6pCpCpCpCpCp');
   });
 });
