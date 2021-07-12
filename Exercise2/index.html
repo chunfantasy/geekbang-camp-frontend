@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>browser-amd-editor</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	</head>
+	<body>
+		<h2>Monaco Editor Sample</h2>
+		<div id="container" style="width: 800px; height: 600px; border: 1px solid grey"></div>
+		<input type="file" id="files" name="files[]" multiple />
+		<input type="button" id="save" name="save" value="Save as file" />
+
+		<!-- OR ANY OTHER AMD LOADER HERE INSTEAD OF loader.js -->
+		<script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
+		<script>
+			require.config({ paths: { vs: './node_modules/monaco-editor/min/vs' } });
+			var content = 'Hello world';
+			var fileName;
+			var fileType;
+			var editor;
+			require(['vs/editor/editor.main'], function () {
+				editor = monaco.editor.create(document.getElementById('container'), {
+					value: [content].join('\n'),
+					language: 'javascript'
+				});
+				editor.onDidChangeModelContent(function (evt) {
+					content = editor.getValue();
+				});
+			});
+
+
+			function handleFileSelect(evt) {
+				var file = evt.target.files[0]; // Only get the first file for simple demo
+				var reader = new FileReader();
+				reader.onload = function(readerEvt) {
+					content = readerEvt.target.result;
+					editor.setValue(content);
+					fileType =  file.type;
+					fileName =  file.name;
+
+				};
+				reader.readAsText(file);
+			}
+
+			function handleFileSave(evt) {
+				var a = document.createElement('a');
+				var fileToSave = new Blob([content], { type: fileType })
+				a.href = URL.createObjectURL(fileToSave);
+				a.download = fileName;
+				a.click();
+				URL.revokeObjectURL(a.href);
+			}
+
+			document.getElementById('files').addEventListener('change', handleFileSelect, false);
+			document.getElementById('save').addEventListener('click', handleFileSave, false);
+		</script>
+	</body>
+</html>
