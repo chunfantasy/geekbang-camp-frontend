@@ -4,8 +4,10 @@
 const ListNode = (val, next) => ({ val, next });
 
 /**
+ * Core algorithm
+ *
  * @param {ListNode} head
- * @return {ListNode}
+ * @return {ListNode} new head in reversed linked list
  */
 const reverseList = (head) => {
   if (!head || !head.next) return head;
