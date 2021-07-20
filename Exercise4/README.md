@@ -6,6 +6,8 @@
 
 [src/views/FishTemplate.vue](src/views/FishTemplate.vue)
 
+[src/calculate.js](src/calculate.js)
+
 ## Run
 
 ```bash
