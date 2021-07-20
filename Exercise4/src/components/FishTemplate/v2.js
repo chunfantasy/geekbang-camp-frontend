@@ -7,7 +7,7 @@ export default class TemplateV1 {
 
   render(template, data) {
     let dom = this.engine.render(template, data);
-    this.root.innerHTML = dom;
+    this.root.appendChild(dom);
   }
 
   mounted(dom) {
