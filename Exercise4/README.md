@@ -6,7 +6,11 @@
 
 [src/views/FishTemplate.vue](src/views/FishTemplate.vue)
 
+[tests/unit/engin2.spec.js](tests/unit/engin2.spec.js)
+
 [src/calculate.js](src/calculate.js)
+
+[tests/unit/calculate.spec.js](tests/unit/calculate.spec.js)
 
 ## Run
 
