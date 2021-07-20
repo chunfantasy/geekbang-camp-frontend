@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import FishTemplate from './FishTemplate.vue';
+import FishTemplate from "./FishTemplate.vue";
 
 export default {
   name: "Home",
