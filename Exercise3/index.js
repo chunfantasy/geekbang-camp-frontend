@@ -31,7 +31,7 @@ const reverse = (list) => {
   }
   console.log(next);
 
-  //
+  // Reverse
   let output = [];
   next = reverseList(next).next;
   console.log(next);
