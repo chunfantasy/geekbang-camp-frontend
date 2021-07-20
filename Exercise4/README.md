@@ -3,7 +3,8 @@
 ## Task file
 
 [src/components/FishTemplate/engine2.js](src/components/FishTemplate/engine2.js)
-[src/view/FishTemplate.vue](src/view/FishTemplate.vue)
+
+[src/views/FishTemplate.vue](src/views/FishTemplate.vue)
 
 ## Run
 
