@@ -1,8 +1,10 @@
 # Exercise 3
 
-## Task file
+## Task files
 
 [index.js](index.js)
+
+[spec/taskSpec.js](spec/taskSpec.js)
 
 ## Run
 
