@@ -11,3 +11,11 @@
 [src/calculate.js](src/calculate.js)
 
 [tests/unit/calculate.spec.js](tests/unit/calculate.spec.js)
+
+##
+
+```bash
+npm i
+npm run test:unit
+npm run serve
+```
