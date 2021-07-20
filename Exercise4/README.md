@@ -12,7 +12,7 @@
 
 [tests/unit/calculate.spec.js](tests/unit/calculate.spec.js)
 
-##
+## Run
 
 ```bash
 npm i
