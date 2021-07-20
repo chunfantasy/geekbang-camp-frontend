@@ -1,4 +1,16 @@
-# main
+# Exercise 4
+
+## Task file
+
+src/components/FishTemplate/engine2.js
+
+## Run
+
+```bash
+npm i
+npm run test:unit
+npm run serve
+```
 
 ## Project setup
 ```
