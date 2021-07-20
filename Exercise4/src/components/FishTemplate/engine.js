@@ -81,7 +81,7 @@ export default class Engine {
           );
           let newScope = {};
           newScope[key] = scope[prop][i];
-          let html = this.scopehtmlParse(newnode, data, newScope);
+          let html = this.scopeHTMLParse(newnode, data, newScope);
           let ele = this.createElement(newnode, html);
           this.scopeAttrParse(ele, newnode, data, newScope);
           // pdom.parentNode.appendChild(ele);
@@ -91,7 +91,7 @@ export default class Engine {
           });
         }
       } else {
-        let html = this.scopehtmlParse(pnode, data, scope);
+        let html = this.scopeHTMLParse(pnode, data, scope);
         let ele = this.createElement(pnode, html);
         this.scopeAttrParse(ele, pnode, data, scope);
         // pdom.appendChild(ele);
@@ -105,10 +105,10 @@ export default class Engine {
     return fragment;
   }
 
-  scopehtmlParse(node, globalScope, curentScope) {
+  scopeHTMLParse(node, globalScope, currentScope) {
     return node.childrenTemplate.replace(/\{\{(.*?)\}\}/g, (s0, s1) => {
       let props = s1.split(".");
-      let val = curentScope[props[0]] || globalScope[props[0]];
+      let val = currentScope[props[0]] || globalScope[props[0]];
       props.slice(1).forEach((item) => {
         val = val[item];
       });
@@ -116,13 +116,13 @@ export default class Engine {
     });
   }
 
-  scopeAttrParse(ele, node, globalScope, curentScope) {
+  scopeAttrParse(ele, node, globalScope, currentScope) {
     console.log(node.attr);
     for (let [key, value] of node.attr) {
       let result = /\{\{(.*?)\}\}/.exec(value);
       if (result && result.length > 0) {
         let props = result[1].split(".");
-        let val = curentScope[props[0]] || globalScope[props[0]];
+        let val = currentScope[props[0]] || globalScope[props[0]];
         props.slice(1).forEach((item) => {
           val = val[item];
         });

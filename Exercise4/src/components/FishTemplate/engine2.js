@@ -75,6 +75,8 @@ export default class Engine2 {
     //转成成node节点
     while (stack.length > 0) {
       let [pnode, pdom, scope] = stack.pop();
+
+      // 处理for
       if (pnode.attr.get("for")) {
         let [key, prop] = pnode.attr.get("for").split("in");
         key = key.trim();
@@ -89,7 +91,7 @@ export default class Engine2 {
           );
           let newScope = {};
           newScope[key] = scope[prop][i];
-          let html = this.scopehtmlParse(newnode, data, newScope);
+          let html = this.scopeHTMLParse(newnode, data, newScope);
           let ele = this.createElement(newnode, html);
           this.scopeAttrParse(ele, newnode, data, newScope);
           // pdom.parentNode.appendChild(ele);
@@ -100,6 +102,8 @@ export default class Engine2 {
           continue;
         }
       }
+
+      // 处理if
       if (pnode.attr.get("if")) {
         const prop = pnode.attr.get("if");
         let props = prop.split(".");
@@ -109,7 +113,9 @@ export default class Engine2 {
         });
         if (!val) continue;
       }
-      let html = this.scopehtmlParse(pnode, data, scope);
+
+      // 处理其他
+      let html = this.scopeHTMLParse(pnode, data, scope);
       let ele = this.createElement(pnode, html);
       this.scopeAttrParse(ele, pnode, data, scope);
       pdom = pdom.appendChild(ele);
@@ -118,14 +124,15 @@ export default class Engine2 {
         stack.push([item, ele, scope]);
       });
     }
+
     return fragment;
   }
 
-  scopehtmlParse(node, globalScope, curentScope) {
+  scopeHTMLParse(node, globalScope, currentScope) {
     if (node.childrenTemplate === undefined) return "";
     return node.childrenTemplate.replace(/\{\{(.*?)\}\}/g, (s0, s1) => {
       let props = s1.split(".");
-      let val = curentScope[props[0]] || globalScope[props[0]];
+      let val = currentScope[props[0]] || globalScope[props[0]];
       props.slice(1).forEach((item) => {
         val = val[item];
       });
@@ -133,12 +140,12 @@ export default class Engine2 {
     });
   }
 
-  scopeAttrParse(ele, node, globalScope, curentScope) {
+  scopeAttrParse(ele, node, globalScope, currentScope) {
     for (let [key, value] of node.attr) {
       let result = /\{\{(.*?)\}\}/.exec(value);
       if (result && result.length > 0) {
         let props = result[1].split(".");
-        let val = curentScope[props[0]] || globalScope[props[0]];
+        let val = currentScope[props[0]] || globalScope[props[0]];
         props.slice(1).forEach((item) => {
           val = val[item];
         });
