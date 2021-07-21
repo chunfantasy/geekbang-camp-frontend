@@ -1,7 +1,6 @@
 import Engine from "@/components/FishTemplate/engine2.js";
 
 describe("Test engine2.js", () => {
-
   it("should render task correctly", () => {
     let template = `<div class="newslist">
       <div class="img" v-if="info.showImage"><img src="{{image}}"/></div>
@@ -17,9 +16,9 @@ describe("Test engine2.js", () => {
       image: "some img",
       info: { showImage: true, showDate: false, name: "aaa" },
     });
-    const container = document.createElement('container');
+    const container = document.createElement("container");
     container.appendChild(nodes);
-    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, '><'));
+    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, "><"));
   });
 
   it("should render both true", () => {
@@ -38,9 +37,9 @@ describe("Test engine2.js", () => {
       image: "some img",
       info: { showImage: true, showDate: true, name: "aaa" },
     });
-    const container = document.createElement('container');
+    const container = document.createElement("container");
     container.appendChild(nodes);
-    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, '><'));
+    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, "><"));
   });
 
   it("should render both false", () => {
@@ -57,9 +56,9 @@ describe("Test engine2.js", () => {
       image: "some img",
       info: { showImage: false, showDate: false, name: "aaa" },
     });
-    const container = document.createElement('container');
+    const container = document.createElement("container");
     container.appendChild(nodes);
-    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, '><'));
+    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, "><"));
   });
 
   it("should render true and false", () => {
@@ -77,9 +76,9 @@ describe("Test engine2.js", () => {
       image: "some img",
       info: { showImage: true, showDate: false, name: "aaa" },
     });
-    const container = document.createElement('container');
+    const container = document.createElement("container");
     container.appendChild(nodes);
-    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, '><'));
+    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, "><"));
   });
 
   it("should render false and true", () => {
@@ -97,9 +96,9 @@ describe("Test engine2.js", () => {
       image: "some img",
       info: { showImage: false, showDate: true, name: "aaa" },
     });
-    const container = document.createElement('container');
+    const container = document.createElement("container");
     container.appendChild(nodes);
-    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, '><'));
+    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, "><"));
   });
 
   it("should render different order", () => {
@@ -118,9 +117,8 @@ describe("Test engine2.js", () => {
       image: "some img",
       info: { showImage: true, showDate: true, name: "aaa" },
     });
-    const container = document.createElement('container');
+    const container = document.createElement("container");
     container.appendChild(nodes);
-    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, '><'));
+    expect(container.innerHTML).toEqual(expectedDOM.replace(/>\s+</g, "><"));
   });
-
 });
