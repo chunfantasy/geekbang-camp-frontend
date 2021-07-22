@@ -1,17 +1,18 @@
 <template>
   <div>
     <div class="head">0722课后作业</div>
+    <editor />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import FishTemplate from "./FishTemplate.vue";
+import Editor from "@/components/Editor.vue";
 
 export default {
   name: "Home",
   components: {
-    // EditorTemplate,
+    Editor,
   },
 };
 </script>
