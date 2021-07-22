@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="editor"></div>
+    <div id="demo"></div>
   </div>
 </template>
 
@@ -10,6 +11,7 @@ export default {
   data() {
     return {
       editor: {},
+      content: "",
     };
   },
   mounted() {
@@ -20,10 +22,19 @@ export default {
   },
   methods: {
     initMonaco() {
-      this.editor = monaco.editor.create(document.getElementById("monaco"), {
+      this.editor = monaco.editor.create(document.getElementById("editor"), {
         value: "Hello world",
-        automaticLayout: true,
-        language: "javascript",
+        // automaticLayout: true,
+        // language: "javascript",
+      });
+      this.editor.onDidChangeModelContent(() => {
+        this.content = this.editor.getValue();
+        console.log(this.content);
+        const dom = document.querySelector("#demo");
+        while (dom.hasChildNodes()) {
+          dom.removeChild(dom.firstChild);
+        }
+        dom.innerHTML = this.content;
       });
     },
 

@@ -11,12 +11,14 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "monaco-editor": "^0.26.1",
-    "monaco-editor-webpack-plugin": "^4.1.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "worker-loader": "^3.0.8"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "monaco-editor-webpack-plugin": "^4.1.1",
+    "html-webpack-inline-source-plugin": "0.0.10",
     "@vue/cli-plugin-babel": "^4.5.0",
     "@vue/cli-plugin-eslint": "^4.5.0",
     "@vue/cli-plugin-unit-jest": "^4.5.0",
