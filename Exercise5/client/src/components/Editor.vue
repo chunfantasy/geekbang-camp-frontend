@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="editor"></div>
-    <demo />
+    <demo v-bind:isLoading="isDemoLoading" />
   </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
     return {
       editor: {},
       content: "",
+      isDemoLoading: true,
     };
   },
   mounted() {
@@ -30,37 +31,34 @@ export default {
     initMonaco() {
       this.editor = monaco.editor.create(document.getElementById("editor"), {
         value: "<template></template>",
-        // automaticLayout: true,
-        // language: "javascript",
+        automaticLayout: true,
+        language: "javascript",
       });
+      this.isDemoLoading = true;
       axios
         .post("http://localhost:3000/run", {
           content: this.content,
         })
-        .then(function (response) {
+        .then((response) => {
           console.log(response);
-          // document.getElementById("demo").contentWindow.location.reload();
+          this.isDemoLoading = false;
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
       this.editor.onDidChangeModelContent(() => {
         this.content = this.editor.getValue();
-        // const dom = document.querySelector("#demo");
-        // while (dom.hasChildNodes()) {
-        //   dom.removeChild(dom.firstChild);
-        // }
-        // dom.innerHTML = this.content;
+        this.isDemoLoading = true;
         axios
           .post("http://localhost:3000/update", {
             content: this.content,
           })
-          .then(function (response) {
+          .then((response) => {
             console.log(response);
             console.log("reload");
-            document.getElementById("demo").contentWindow.location.reload();
+            this.isDemoLoading = false;
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.log(error);
           });
       });
