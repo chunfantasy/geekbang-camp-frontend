@@ -11,7 +11,8 @@ export default {
 };
 </script>
 <style scoped>
-#demo-container {
+#demo {
+  width: 100%;
   height: 300px;
   border: 3px solid black;
 }

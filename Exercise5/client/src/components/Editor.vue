@@ -79,9 +79,6 @@ export default {
 #editor {
   height: 300px;
   border: 3px solid black;
-}
-#demo-container {
-  height: 300px;
-  border: 3px solid black;
+  text-align: left;
 }
 </style>
