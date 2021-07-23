@@ -7,6 +7,7 @@ const path = require("path");
 const app = express();
 const port = 3000;
 let cmd;
+let isRunning = false;
 
 app.use(cors());
 app.use(express.json());
@@ -16,12 +17,18 @@ app.get("/", (req, res) => {
 
 app.post("/run", (req, res) => {
   console.log("Run");
+  const data = new Uint8Array(
+    Buffer.from("/* eslint-disable */\n" + req.body.content)
+  );
+  fs.writeFileSync(path.resolve("src", "components", "Demo.vue"), data);
   cmd = cp.spawn("npm", ["run", "serve", "--", "--port", "3001"]);
 
   cmd.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-    if (data.includes('http://localhost')) {
-      res.send("Done!");
+    // console.log(`stdout: ${data}`);
+    if (!isRunning && data.includes("http://localhost")) {
+      console.log("################################################################################");
+      isRunning = true;
+      res.send("Started!");
     }
   });
 
@@ -49,7 +56,8 @@ app.post("/update", (req, res) => {
   const data = new Uint8Array(
     Buffer.from("/* eslint-disable */\n" + req.body.content)
   );
-  fs.writeFile(path.resolve("src", "views", "Demo.vue"), data, console.log);
+  fs.writeFileSync(path.resolve("src", "components", "Demo.vue"), data);
+  res.send('Updated!')
 });
 
 app.listen(port, () => {

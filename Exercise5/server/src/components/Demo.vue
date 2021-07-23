@@ -1,11 +1,3 @@
-<template>
-  <div>
-    This is a demo.
-  </div>
-</template>
-
-<script>
-</script>
-
-<style scoped>
-</style>
+/* eslint-disable */
+<template><div class="abc">This is a demoab.</div><
+<style>.abc{border: 1px solid red;}

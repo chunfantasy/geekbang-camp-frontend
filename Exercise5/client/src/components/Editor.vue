@@ -2,6 +2,7 @@
   <div>
     <div id="editor"></div>
     <demo v-bind:isLoading="isDemoLoading" />
+    <button @click="run">Run</button>
   </div>
 </template>
 
@@ -17,7 +18,7 @@ export default {
   data() {
     return {
       editor: {},
-      content: "",
+      content: "<template><div>This is a demo.</div></template>",
       isDemoLoading: true,
     };
   },
@@ -30,7 +31,7 @@ export default {
   methods: {
     initMonaco() {
       this.editor = monaco.editor.create(document.getElementById("editor"), {
-        value: "<template></template>",
+        value: this.content,
         automaticLayout: true,
         language: "javascript",
       });
@@ -48,24 +49,27 @@ export default {
         });
       this.editor.onDidChangeModelContent(() => {
         this.content = this.editor.getValue();
-        this.isDemoLoading = true;
-        axios
-          .post("http://localhost:3000/update", {
-            content: this.content,
-          })
-          .then((response) => {
-            console.log(response);
-            console.log("reload");
-            this.isDemoLoading = false;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
       });
     },
 
     destroyEditor() {
       this.editor.dispose();
+    },
+
+    run() {
+      this.isDemoLoading = true;
+      axios
+        .post("http://localhost:3000/update", {
+          content: this.content,
+        })
+        .then((response) => {
+          console.log(response);
+          console.log("reload");
+          this.isDemoLoading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
