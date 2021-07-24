@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="editor"></div>
-    <demo id="demo" v-bind:isLoading="isdemoloading" />
+    <demo id="demo" :isLoading="isDemoLoading" />
     <div id="run">
       <button @click="run">Run</button>
     </div>
@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       editor: {},
-      content: "<template>\n\t<div>\n\t\tThis is a demo.\n\t</div>\n</template>\n\n<style>\nbody {\n\tfont-size: 36px;\n}\n</style>\n",
+      content:
+        "<template>\n\t<div>\n\t\tThis is a demo.\n\t</div>\n</template>\n\n<style>\nbody {\n\tfont-size: 36px;\n}\n</style>\n",
       isDemoLoading: true,
     };
   },

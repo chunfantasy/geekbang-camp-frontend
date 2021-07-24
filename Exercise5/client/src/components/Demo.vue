@@ -1,7 +1,7 @@
 <template>
   <div id="demo-container">
     <iframe v-if="!isLoading" src="http://localhost:3001/#/" id="demo-iframe" />
-    <h1 v-if="isLoading">Loading</h1>
+    <h1 v-if="isLoading">Loading...</h1>
   </div>
 </template>
 

@@ -2,7 +2,6 @@
 <template>
   <div id="app">
   <HelloWorld />
-  	{{title}}
     <img alt="Vue logo" src="https://static001.geekbang.org/static/university/img/author.7b1cb203.png">
   </div>
 </template>
@@ -12,11 +11,6 @@ import HelloWorld from './DemoTemplate.vue'
 
 export default {
   name: 'app',
-  data() {
-	  return {
-		  title: '优秀！',
-	  }
-  },
   components: {
     HelloWorld,
   }
