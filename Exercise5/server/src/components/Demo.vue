@@ -1,12 +1,35 @@
 /* eslint-disable */
 <template>
-	<div>
-		This is a demo.
-	</div>
+  <div id="app">
+  <HelloWorld />
+  	{{title}}
+    <img alt="Vue logo" src="https://static001.geekbang.org/static/university/img/author.7b1cb203.png">
+  </div>
 </template>
-<script></script>
+
+<script>
+import HelloWorld from './DemoTemplate.vue'
+
+export default {
+  name: 'app',
+  data() {
+	  return {
+		  title: '优秀！',
+	  }
+  },
+  components: {
+    HelloWorld,
+  }
+}
+</script>
+
 <style>
-body {
-	font-size: 36px;
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

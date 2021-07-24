@@ -14,5 +14,6 @@ export default {
 #demo-iframe {
   width: 100%;
   border: none;
+  height: 100%;
 }
 </style>

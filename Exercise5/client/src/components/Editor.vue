@@ -102,7 +102,7 @@ export default {
   flex-basis: 0;
   /* border-top: 12px solid #20232a; */
   border-bottom: 12px solid #20232a;
-  border-right: 12px solid #20232a;
+  /* border-right: 12px solid #20232a; */
 }
 
 #run {
