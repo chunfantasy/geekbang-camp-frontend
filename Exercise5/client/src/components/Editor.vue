@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="container">
     <div id="editor"></div>
-    <demo v-bind:isLoading="isDemoLoading" />
-    <button @click="run">Run</button>
+    <demo id="demo" v-bind:isLoading="isdemoloading" />
+    <div id="run">
+      <button @click="run">Run</button>
+    </div>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
   data() {
     return {
       editor: {},
-      content: "<template><div>This is a demo.</div></template>",
+      content: "<template>\n\t<div>\n\t\tThis is a demo.\n\t</div>\n</template>\n\n<style>\nbody {\n\tfont-size: 36px;\n}\n</style>\n",
       isDemoLoading: true,
     };
   },
@@ -33,7 +35,9 @@ export default {
       this.editor = monaco.editor.create(document.getElementById("editor"), {
         value: this.content,
         automaticLayout: true,
-        language: "javascript",
+        language: "html",
+        fontSize: "18px",
+        theme: "vs-dark",
       });
       this.isDemoLoading = true;
       axios
@@ -75,10 +79,58 @@ export default {
 };
 </script>
 
-<style scoped>
+<style soped>
+.container {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 7fr 1fr;
+  height: calc(100vh - 50px);
+}
+
 #editor {
-  height: 300px;
-  border: 3px solid black;
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-basis: 0;
   text-align: left;
+  border: 1px solid #1e1e1e;
+}
+
+#demo {
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-basis: 0;
+  /* border-top: 12px solid #20232a; */
+  border-bottom: 12px solid #20232a;
+  border-right: 12px solid #20232a;
+}
+
+#run {
+  grid-column: 1 / span 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#run button {
+  margin: 0 auto;
+  height: 36px;
+  width: 108px;
+  background-color: #0097a7;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:active {
+  background-color: #0097a7;
+  box-shadow: 0 1px #666;
+  transform: translateX(1px) translateY(1px);
 }
 </style>

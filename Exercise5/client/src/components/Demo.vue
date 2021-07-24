@@ -1,6 +1,6 @@
 <template>
   <div id="demo-container">
-    <iframe v-if="!isLoading" src="http://localhost:3001/#/" id="demo" />
+    <iframe v-if="!isLoading" src="http://localhost:3001/#/" id="demo-iframe" />
     <h1 v-if="isLoading">Loading</h1>
   </div>
 </template>
@@ -11,9 +11,8 @@ export default {
 };
 </script>
 <style scoped>
-#demo {
+#demo-iframe {
   width: 100%;
-  height: 300px;
-  border: 3px solid black;
+  border: none;
 }
 </style>

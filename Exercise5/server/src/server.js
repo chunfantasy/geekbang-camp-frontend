@@ -21,12 +21,16 @@ app.post("/run", (req, res) => {
     Buffer.from("/* eslint-disable */\n" + req.body.content)
   );
   fs.writeFileSync(path.resolve("src", "components", "Demo.vue"), data);
+  console.log(`isRunning: ${isRunning}`);
+  if (isRunning) {
+    res.send("Already started!");
+    return;
+  }
   cmd = cp.spawn("npm", ["run", "serve", "--", "--port", "3001"]);
 
   cmd.stdout.on("data", (data) => {
-    // console.log(`stdout: ${data}`);
+    console.log(`stdout: ${data}`);
     if (!isRunning && data.includes("http://localhost")) {
-      console.log("################################################################################");
       isRunning = true;
       res.send("Started!");
     }
@@ -57,7 +61,7 @@ app.post("/update", (req, res) => {
     Buffer.from("/* eslint-disable */\n" + req.body.content)
   );
   fs.writeFileSync(path.resolve("src", "components", "Demo.vue"), data);
-  res.send('Updated!')
+  res.send("Updated!");
 });
 
 app.listen(port, () => {

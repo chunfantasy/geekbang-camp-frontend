@@ -21,30 +21,5 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100%;
-
-  .btn {
-    display: inline-block;
-    border-radius: 6px;
-    width: 200px;
-    height: 60px;
-    line-height: 60px;
-    margin-left: 10px;
-    background-color: #f5a87c;
-    color: #fff;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  .text {
-    height: 40px;
-    line-height: 40px;
-    text-indent: 10px;
-    min-width: 300px;
-  }
 }
 </style>
